@@ -1,0 +1,186 @@
+sections:
+  - hero
+  - principles
+  - capabilities
+  - metrics
+  - steps
+  - cta
+
+hero:
+  eyebrow: PostgreSQL 控制平面 · 开源 · v0.7 本地验收
+  title_lines:
+    - words:
+        - { text: 一个控制平面， }
+    - words:
+        - { text: 管理所有 PostgreSQL。 }
+  lead: >-
+    用统一的 Resource、Capability、Plan、Operation 与 Audit 模型，
+    完成任意 PostgreSQL 直连、Patroni HA 纳管与 Pigsty 生命周期运维。
+  note: v0.7 已通过本地验收，尚未正式发布。每次写入都先生成计划。
+  actions:
+    - label: 阅读文档
+      url: docs/
+      icon: fa-solid fa-book-open
+      style: primary
+    - label: 理解架构
+      url: blog/design/control-plane-kernel/
+      icon: fa-solid fa-diagram-project
+      style: ghost
+    - label: 查看源码
+      url: https://github.com/pgsty/boar
+      icon: fa-brands fa-github
+      style: ghost
+      external: true
+
+principles:
+  eyebrow: 控制面公理
+  title: 安全不是附加功能，而是架构本身
+  text: Boar 显式建模权限、意图、执行与证据。
+  columns: 4
+  items:
+    - title: 以资源为作用域
+      icon: fa-solid fa-cube
+      desc: 身份、来源、字段所有权与管理模式彼此独立。
+    - title: 以能力为依据
+      icon: fa-solid fa-sliders
+      desc: Effective Capability 说明动作是否可用，以及为什么。
+    - title: 写入之前先计划
+      icon: fa-solid fa-file-shield
+      desc: 每个副作用都封装在不可变、可审查的计划中。
+    - title: 持久化执行证据
+      icon: fa-solid fa-clock-rotate-left
+      desc: 外部调用前先提交状态，并保留所有模糊结果。
+
+capabilities:
+  eyebrow: 一套语义内核
+  title: 直连、HA 与生命周期运维在此归一
+  text: 各 Provider 保留原生优势，同时遵守同一套北向合同。
+  items:
+    - ref: 01 / 发现
+      title: 建立可信的资源关系图
+      url: docs/concepts/resources/
+      motto: Connection 是访问路径，不是资产身份
+      bullets:
+        - 通过任意连接 URL 发现 PostgreSQL
+        - 将 Pigsty Inventory 导入为可审查的 Candidate Graph
+        - 权限不足表示为 unknown，而不是不存在
+      value: 在 Boar 声明管理权与执行权之前，先对齐身份事实。
+      visual:
+        type: shell
+        brand: BOAR
+        search: 搜索资源或命令
+        shortcut: ⌘ K
+        section: 资源
+        section_icon: fa-solid fa-cubes-stacked
+        items:
+          - { label: PostgreSQL 集群, active: true }
+          - { label: Patroni 高可用组 }
+          - { label: Pigsty 部署 }
+          - { label: 连接 }
+        eyebrow: 工作空间 / DEFAULT
+        title_lines: [识别目标。, 证明身份。]
+        rules: ['86%', '70%', '54%']
+    - ref: 02 / 计划
+      title: 将意图变成密封合同
+      url: docs/concepts/plans/
+      motto: 审查精确的动作、目标、风险与前置条件
+      bullets:
+        - Plan Hash 绑定所有影响执行的字段
+        - Policy 评估风险、作用域、新鲜度与主体权限
+        - 计划或目标证据变化会令审批失效
+      value: CLI、GUI、API、MCP 与 Assistant 都必须经过同一道门。
+      visual:
+        type: card
+        icon: fa-solid fa-file-signature
+        title: Plan / postgres.instance.restart
+        lines:
+          - Resource `cluster/ha-main`
+          - Risk `Medium`
+          - Policy `需要审批`
+          - Digest `sha256:…7a42`
+    - ref: 03 / 执行
+      title: 持久执行，如实恢复
+      url: docs/concepts/operations/
+      motto: Durable Commit 必须先于外部调用
+      bullets:
+        - Lease 与 Resource Lock 协调执行 Worker
+        - Idempotency 与 Verification 覆盖已知崩溃窗口
+        - 模糊写入永不自动重试
+      value: 重启、SQL 变更或 Pigsty 操作共享同一份事件历史。
+      visual:
+        type: code
+        aria_label: Operation 状态与结果轴
+        title: operation snapshot
+        lines:
+          - { class: p, prefix: '01 ', text: State=PENDING         计划已密封 }
+          - { class: p, prefix: '02 ', text: State=RUNNING         状态已持久化 }
+          - { class: c, prefix: '03 ', text: SendState=MAYBE_SENT  Provider 边界 }
+          - { class: ok, prefix: '04 ', text: Outcome=SUCCEEDED    Verification=CONFIRMED }
+    - ref: 04 / 部署
+      title: 为故障域选择合适的运行模式
+      url: docs/start/runtime-modes/
+      motto: 同一份源码，三种运行拓扑
+      bullets:
+        - Server Mode 用 PostgreSQL 保存共享持久状态
+        - Local Mode 使用独立的 SQLite Kernel Store
+        - Site Agent 已有出站 mTLS 身份验证，Plan 派发列入 P14
+      value: 拓扑改变时，控制面合同保持稳定。
+      visual:
+        type: components
+        items:
+          - { icon: fa-solid fa-server, title: SERVER, detail: 共享控制平面 }
+          - { icon: fa-solid fa-laptop, title: LOCAL, detail: 单节点工作空间 }
+          - { icon: fa-solid fa-tower-broadcast, title: SITE AGENT, detail: 身份验证原型 }
+          - { icon: fa-solid fa-robot, title: ASSISTANT, detail: 受限 Actor }
+
+metrics:
+  eyebrow: 本地验收源码快照 · 2026-09-08
+  title: 进度必须由证据表达，而不是百分比
+  columns: 4
+  items:
+    - value: 6
+      label: 个 v0.7 Epic 已验收
+      desc: P0 至 P5 通过真实目标旅程；正式发布仍未完成
+    - value: 4
+      label: 个平台制品已验签
+      desc: 作用域为本地验收；Linux arm64 未做运行测试
+    - value: 19
+      label: Patroni CLI 命令
+      desc: 原生兼容能力永久保留
+    - value: 3
+      label: PostgreSQL 管理域
+      desc: 直连、Patroni、Pigsty 共用内核
+
+steps:
+  eyebrow: 安全写入路径
+  title: 再短的路径，也必须经过全部不变量
+  items:
+    - title: 解析 Resource 与 Capability
+      icon: fa-solid fa-fingerprint
+      desc: 匹配身份事实，并解释最终可用的动作集合。
+    - title: 生成并密封 Plan
+      icon: fa-solid fa-file-circle-check
+      desc: 将目标、动作、输入、风险、策略与前置条件绑定为一个摘要。
+    - title: 准入并持久执行
+      icon: fa-solid fa-gears
+      desc: 先提交 Operation 并取得资源锁，再调用类型化 Driver。
+    - title: 验证并发布证据
+      icon: fa-solid fa-clipboard-check
+      desc: 分别记录发送事实、验证事实、业务结果、事件与审计。
+
+cta:
+  title: 先看当前状态，再选择入口。
+  text: 在使用操作指南前，先确认哪些能力已验收、正在开发或仍在规划。
+  actions:
+    - label: 状态与路线图
+      url: docs/develop/roadmap/
+      icon: fa-solid fa-route
+      style: primary
+    - label: 快速上手
+      url: docs/start/
+      icon: fa-solid fa-arrow-right
+      style: ghost
+    - label: 设计笔记
+      url: blog/design/
+      icon: fa-solid fa-compass-drafting
+      style: ghost

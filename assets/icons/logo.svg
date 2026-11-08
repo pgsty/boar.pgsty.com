@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Boar</title>
+  <rect width="64" height="64" rx="15" fill="#a24624"/>
+  <path d="M18 21 10 12l3 17m33-8 8-9-3 17" fill="#f3c6a8" stroke="#fff7ed" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M15 27c0-9 7-15 17-15s17 6 17 15v9c0 11-7 17-17 17s-17-6-17-17Z" fill="#fff7ed"/>
+  <circle cx="24" cy="29" r="2.5" fill="#3d1c14"/>
+  <circle cx="40" cy="29" r="2.5" fill="#3d1c14"/>
+  <rect x="20" y="36" width="24" height="13" rx="6.5" fill="#3d1c14"/>
+  <ellipse cx="27" cy="42.5" rx="2" ry="2.5" fill="#f3c6a8"/>
+  <ellipse cx="37" cy="42.5" rx="2" ry="2.5" fill="#f3c6a8"/>
+  <path d="M20 43c-5 1-7 4-7 8 4 0 7-2 9-5m22-3c5 1 7 4 7 8-4 0-7-2-9-5" fill="#fff7ed" stroke="#a24624" stroke-width="1.5" stroke-linejoin="round"/>
+</svg>

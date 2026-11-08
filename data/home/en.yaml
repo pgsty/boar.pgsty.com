@@ -1,0 +1,186 @@
+sections:
+  - hero
+  - principles
+  - capabilities
+  - metrics
+  - steps
+  - cta
+
+hero:
+  eyebrow: PostgreSQL control plane · Open source · v0.7 local acceptance
+  title_lines:
+    - words:
+        - { text: One control plane. }
+    - words:
+        - { text: Every PostgreSQL. }
+  lead: >-
+    Connect directly, adopt Patroni HA, and operate Pigsty lifecycle through
+    one Resource, Capability, Plan, Operation, and Audit model.
+  note: v0.7 passed local acceptance; formal release is pending. Every write starts with a plan.
+  actions:
+    - label: Read the docs
+      url: docs/
+      icon: fa-solid fa-book-open
+      style: primary
+    - label: Explore the architecture
+      url: blog/design/control-plane-kernel/
+      icon: fa-solid fa-diagram-project
+      style: ghost
+    - label: View source
+      url: https://github.com/pgsty/boar
+      icon: fa-brands fa-github
+      style: ghost
+      external: true
+
+principles:
+  eyebrow: Control-plane axioms
+  title: Safety is the architecture
+  text: Boar makes authority, intent, execution, and evidence explicit.
+  columns: 4
+  items:
+    - title: Resource scoped
+      icon: fa-solid fa-cube
+      desc: Identity, provenance, ownership, and management mode are modeled independently.
+    - title: Capability driven
+      icon: fa-solid fa-sliders
+      desc: Effective capability explains whether an action is available and why.
+    - title: Plan before write
+      icon: fa-solid fa-file-shield
+      desc: Every side effect is sealed in an immutable, reviewable plan.
+    - title: Durable evidence
+      icon: fa-solid fa-clock-rotate-left
+      desc: Operations commit state before external calls and preserve ambiguous outcomes.
+
+capabilities:
+  eyebrow: One semantic kernel
+  title: Direct, HA, and lifecycle operations converge here
+  text: Different providers keep their native strengths while sharing one northbound contract.
+  items:
+    - ref: 01 / DISCOVER
+      title: Build a trustworthy resource graph
+      url: docs/concepts/resources/
+      motto: A connection is an access path, not an asset identity
+      bullets:
+        - Discover PostgreSQL through arbitrary connection URLs
+        - Import Pigsty inventory into a reviewable candidate graph
+        - Preserve insufficient privilege as unknown, never as absence
+      value: Reconcile evidence before Boar claims ownership or authority.
+      visual:
+        type: shell
+        brand: BOAR
+        search: Search resources or commands
+        shortcut: ⌘ K
+        section: Resources
+        section_icon: fa-solid fa-cubes-stacked
+        items:
+          - { label: PostgreSQL clusters, active: true }
+          - { label: Patroni groups }
+          - { label: Pigsty deployments }
+          - { label: Connections }
+        eyebrow: WORKSPACE / DEFAULT
+        title_lines: [Know the target., Prove the identity.]
+        rules: ['86%', '70%', '54%']
+    - ref: 02 / PLAN
+      title: Turn intent into a sealed contract
+      url: docs/concepts/plans/
+      motto: Review the exact action, target, risk, and preconditions
+      bullets:
+        - Plan hashes bind every execution-relevant field
+        - Policy evaluates risk, scope, freshness, and principal authority
+        - Approval becomes stale when the plan or target evidence changes
+      value: CLI, GUI, API, MCP, and Assistant all cross the same gate.
+      visual:
+        type: card
+        icon: fa-solid fa-file-signature
+        title: Plan / postgres.instance.restart
+        lines:
+          - Resource `cluster/ha-main`
+          - Risk `Medium`
+          - Policy `approval required`
+          - Digest `sha256:…7a42`
+    - ref: 03 / OPERATE
+      title: Execute durably, recover honestly
+      url: docs/concepts/operations/
+      motto: Durable commit comes before the external call
+      bullets:
+        - Leases and resource locks coordinate workers
+        - Idempotency and verification close known crash windows
+        - Ambiguous writes are never retried automatically
+      value: A restart, SQL change, or Pigsty action shares one event history.
+      visual:
+        type: code
+        aria_label: Operation state and result axes
+        title: operation snapshot
+        lines:
+          - { class: p, prefix: '01 ', text: State=PENDING         plan sealed }
+          - { class: p, prefix: '02 ', text: State=RUNNING         durable commit }
+          - { class: c, prefix: '03 ', text: SendState=MAYBE_SENT  provider boundary }
+          - { class: ok, prefix: '04 ', text: Outcome=SUCCEEDED    Verification=CONFIRMED }
+    - ref: 04 / DEPLOY
+      title: Choose the failure domain that fits
+      url: docs/start/runtime-modes/
+      motto: One source tree, three operational modes
+      bullets:
+        - Server mode uses PostgreSQL for shared durable state
+        - Local mode uses an independent SQLite kernel store
+        - Site Agent proves outbound mTLS identity; Plan dispatch is planned for P14
+      value: The control-plane contract stays stable as the topology changes.
+      visual:
+        type: components
+        items:
+          - { icon: fa-solid fa-server, title: SERVER, detail: shared control plane }
+          - { icon: fa-solid fa-laptop, title: LOCAL, detail: single-node workspace }
+          - { icon: fa-solid fa-tower-broadcast, title: SITE AGENT, detail: identity prototype }
+          - { icon: fa-solid fa-robot, title: ASSISTANT, detail: constrained actor }
+
+metrics:
+  eyebrow: Locally accepted source snapshot · 2026-09-08
+  title: Progress is evidence, not a percentage
+  columns: 4
+  items:
+    - value: 6
+      label: v0.7 Epics accepted
+      desc: P0 through P5 passed real-target journeys; formal release is still pending
+    - value: 4
+      label: platform artifacts verified
+      desc: Local-acceptance scope; Linux arm64 was not runtime-tested
+    - value: 19
+      label: Patroni CLI commands
+      desc: Native compatibility retained
+    - value: 3
+      label: PostgreSQL domains
+      desc: Direct, Patroni, and Pigsty share one kernel
+
+steps:
+  eyebrow: A safe write path
+  title: The shortest route still crosses every invariant
+  items:
+    - title: Resolve resource and capability
+      icon: fa-solid fa-fingerprint
+      desc: Match identity evidence and explain the effective action surface.
+    - title: Create and seal a plan
+      icon: fa-solid fa-file-circle-check
+      desc: Bind target, action, inputs, risk, policy, and preconditions into one digest.
+    - title: Admit and execute durably
+      icon: fa-solid fa-gears
+      desc: Commit the operation, acquire its lock, then call the typed driver.
+    - title: Verify and publish evidence
+      icon: fa-solid fa-clipboard-check
+      desc: Record send state, verification, business outcome, events, and audit separately.
+
+cta:
+  title: Start with the current status, then choose your entry point.
+  text: Check what is accepted, in development, and planned before following the operating guides.
+  actions:
+    - label: Status and roadmap
+      url: docs/develop/roadmap/
+      icon: fa-solid fa-route
+      style: primary
+    - label: Get started
+      url: docs/start/
+      icon: fa-solid fa-arrow-right
+      style: ghost
+    - label: Design notes
+      url: blog/design/
+      icon: fa-solid fa-compass-drafting
+      style: ghost

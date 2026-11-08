@@ -1,0 +1,16 @@
+// Boar keeps the Oink reading shell intact and adds one restrained brand cue:
+// the wordmark uses the same warm copper as plans and approvals in the product.
+.td-navbar .navbar-brand {
+  letter-spacing: 0.035em;
+}
+
+.td-landing-hero__eyebrow {
+  font-family: var(--td-meta-font-family);
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+}
+
+.boar-status-line {
+  font-family: var(--td-code-font-family);
+  font-size: 0.875rem;
+}
