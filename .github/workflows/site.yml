@@ -9,13 +9,12 @@ permissions:
   contents: read
 
 env:
-  GO_VERSION: 1.27.3
-  HUGO_VERSION: "0.168.0"
+  GO_VERSION: 1.27.4
   GOTOOLCHAIN: local
 
 jobs:
   build:
-    name: Hugo 0.168.0 / OINK 1.5.0
+    name: Build and validate site
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -23,13 +22,12 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-go@v7
         with:
-          go-version: 1.27.3
+          go-version: 1.27.4
           check-latest: true
           cache: true
       - uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: "0.168.0"
-          extended: true
+          hugo-version: latest
 
       - name: Resolve the pinned Oink module
         run: go mod download

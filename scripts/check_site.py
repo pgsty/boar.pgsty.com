@@ -87,16 +87,15 @@ def check_toolchain(errors: list[str]) -> None:
         errors.append(f"toolchain probe failed: {exc}")
         return
     go_version = re.search(r"go(\d+)\.(\d+)\.(\d+)", go)
-    if not go_version or tuple(map(int, go_version.groups())) < (1, 27, 3):
-        errors.append(f"expected Go 1.27.3 or newer, got: {go}")
-    hugo_version = re.search(r"hugo v(\d+)\.(\d+)\.(\d+)(?:-[0-9a-f]+)?\+extended", hugo)
-    if not hugo_version or tuple(map(int, hugo_version.groups())) < (0, 168, 0):
-        errors.append(f"expected Hugo Extended 0.168.0 or newer, got: {hugo}")
+    if not go_version or tuple(map(int, go_version.groups())) < (1, 27, 4):
+        errors.append(f"expected Go 1.27.4 or newer, got: {go}")
+    if "hugo v" not in hugo:
+        errors.append(f"unexpected hugo version output: {hugo}")
     go_mod = (ROOT / "go.mod").read_text(encoding="utf-8")
-    if "go 1.27.3" not in go_mod:
-        errors.append("go.mod does not pin Go 1.27.3")
-    if "github.com/pgsty/oink v1.5.1" not in go_mod:
-        errors.append("go.mod does not pin Oink v1.5.1")
+    if "go 1.27.4" not in go_mod:
+        errors.append("go.mod does not pin Go 1.27.4")
+    if "github.com/pgsty/oink v1.6.0" not in go_mod:
+        errors.append("go.mod does not pin Oink v1.6.0")
 
 
 def check_source_contract(errors: list[str]) -> tuple[int, int]:
