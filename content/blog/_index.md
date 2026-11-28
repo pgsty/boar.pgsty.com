@@ -7,6 +7,7 @@ sidebar_root_for: self
 sidebar_root_link_self: true
 navbar_autohide: false
 blog_index: cards
+blog_index_toggle: true
 cascade:
   type: blog
   theme_color: '#9a3f24'
@@ -22,5 +23,5 @@ Boar's blog is deliberately split by intent:
 
 - [Articles](article/) hold long-form technical writing. The section starts empty.
 - [Design notes](design/) distill accepted product contracts, architecture decisions, and engineering rationale.
-- [Release notes](release/) preserve version acceptance records and, when applicable, public release and migration guidance.
+- Version acceptance records and upgrade notices live in the dedicated [Release](/release/) section.
   {.cards}

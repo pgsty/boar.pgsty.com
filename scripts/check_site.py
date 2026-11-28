@@ -94,8 +94,8 @@ def check_toolchain(errors: list[str]) -> None:
     go_mod = (ROOT / "go.mod").read_text(encoding="utf-8")
     if "go 1.27.4" not in go_mod:
         errors.append("go.mod does not pin Go 1.27.4")
-    if "github.com/pgsty/oink v1.6.0" not in go_mod:
-        errors.append("go.mod does not pin Oink v1.6.0")
+    if "github.com/pgsty/oink v1.7.0" not in go_mod:
+        errors.append("go.mod does not pin Oink v1.7.0")
 
 
 def check_source_contract(errors: list[str]) -> tuple[int, int]:
@@ -142,8 +142,8 @@ def check_required_outputs(errors: list[str]) -> None:
         "zh/blog/article/index.html",
         "blog/design/index.html",
         "zh/blog/design/index.html",
-        "blog/release/index.html",
-        "zh/blog/release/index.html",
+        "release/index.html",
+        "zh/release/index.html",
         "docs/llms-full.txt",
         "zh/docs/llms-full.txt",
         "llms.txt",

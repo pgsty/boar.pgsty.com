@@ -113,14 +113,12 @@ languages:
           params:
             icon: fa-solid fa-compass-drafting
             description: Product contracts and architecture decisions
-        - identifier: blog-release
-          parent: blog
-          name: Release notes
-          pageRef: /blog/release
-          weight: 30
+        - identifier: release
+          name: Release
+          pageRef: /release
+          weight: 50
           params:
             icon: fa-solid fa-tags
-            description: Version changes, upgrades, and compatibility
         - identifier: github
           name: GitHub
           url: https://github.com/pgsty/boar
@@ -218,14 +216,12 @@ languages:
           params:
             icon: fa-solid fa-compass-drafting
             description: 产品合同与架构决策
-        - identifier: blog-release
-          parent: blog
-          name: 发布注记
-          pageRef: /blog/release
-          weight: 30
+        - identifier: release
+          name: 发布
+          pageRef: /release
+          weight: 50
           params:
             icon: fa-solid fa-tags
-            description: 版本变化、升级与兼容性
         - identifier: github
           name: GitHub
           url: https://github.com/pgsty/boar

@@ -30,7 +30,7 @@ earlier contract bytes.
 | Architecture and accepted ADRs | [Design notes](/blog/design/) and the [decision map](/blog/design/contract-decision-map/) |
 | Current Epics and acceptance | [Status and roadmap](../roadmap/) |
 | Historical Epics, progress, and receipts | This evidence model and the dated design notes |
-| Fusion v0.2 contracts and runbooks | [Compatibility](/docs/reference/compatibility/), [administration](/docs/admin/), and [v0.2.0 release notes](/blog/release/v0.2.0/) |
+| Fusion v0.2 contracts and runbooks | [Compatibility](/docs/reference/compatibility/), [administration](/docs/admin/), and [v0.2.0 release notes](/release/v0.2.0/) |
 | Package, CLI, API, configuration, and tests | [Reference](/docs/reference/) and [development](/docs/develop/) |
 | Research blueprints and transplant studies | Design notes, clearly labeled as rationale rather than shipped behavior |
 

@@ -28,7 +28,7 @@ CC-CP-007 与 ADR-022 至 ADR-025 记录这次变更，不改写旧合同字节�
 | Architecture 与 Accepted ADR | [设计笔记](/zh/blog/design/)和[决策总表](/zh/blog/design/contract-decision-map/) |
 | 当前 Epic 与验收 | [状态与路线图](../roadmap/) |
 | 历史 Epic、Progress 与 Receipt | 本页证据模型与带日期的设计笔记 |
-| Fusion v0.2 合同与 Runbook | [兼容性](/zh/docs/reference/compatibility/)、[管理维护](/zh/docs/admin/)与 [v0.2.0 发布注记](/zh/blog/release/v0.2.0/) |
+| Fusion v0.2 合同与 Runbook | [兼容性](/zh/docs/reference/compatibility/)、[管理维护](/zh/docs/admin/)与 [v0.2.0 发布注记](/zh/release/v0.2.0/) |
 | Package、CLI、API、配置与测试 | [参考手册](/zh/docs/reference/)与[开发指南](/zh/docs/develop/) |
 | 研究蓝图与移植研究 | 设计笔记，并明确标记为设计理由而非已发布行为 |
 

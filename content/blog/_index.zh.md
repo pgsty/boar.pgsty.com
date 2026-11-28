@@ -7,6 +7,7 @@ sidebar_root_for: self
 sidebar_root_link_self: true
 navbar_autohide: false
 blog_index: cards
+blog_index_toggle: true
 cascade:
   type: blog
   theme_color: '#9a3f24'
@@ -18,9 +19,9 @@ cascade:
   search_boost: 0.9
 ---
 
-Boar 博客按内容意图严格分栏：
+Boar 博客按内容意图分栏：
 
 - [专题文章](article/) 用于长篇技术内容，目前保持为空。
 - [设计笔记](design/) 沉淀已接受的产品合同、架构决策与工程理由。
-- [发布注记](release/) 保留版本验收记录，并在适用时提供公开发布、兼容性与迁移指导。
+- 版本验收记录与升级说明已独立至[发布](/zh/release/)栏目。
   {.cards}
